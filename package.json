@@ -1,0 +1,40 @@
+{
+  "name": "bellabox-theme",
+  "version": "1.0.0",
+  "description": "BellaBox - A professional and elegant theme for beauty and cosmetics stores on Salla platform",
+  "author": "BellaBox Development Team",
+  "license": "MIT",
+  "keywords": [
+    "salla",
+    "theme",
+    "twilight",
+    "beauty",
+    "cosmetics",
+    "ecommerce"
+  ],
+  "salla": {
+    "name": "BellaBox",
+    "description": "ثيم بيلابوكس - تصميم احترافي وراقٍ لمتاجر التجميل والعناية بالبشرة على منصة سلة",
+    "version": "1.0.0",
+    "preview_url": "https://bellaboxksa.com",
+    "support_url": "https://github.com/mohammedalhmed/newbellabox",
+    "documentation_url": "https://github.com/mohammedalhmed/newbellabox/wiki",
+    "colors": {
+      "primary": "#E91E63",
+      "secondary": "#FCE4EC",
+      "accent": "#FFD700",
+      "text": "#424242",
+      "light_bg": "#F5F5F5",
+      "white": "#FFFFFF"
+    }
+  },
+  "scripts": {
+    "dev": "salla theme dev",
+    "build": "salla theme build",
+    "publish": "salla theme publish"
+  },
+  "devDependencies": {
+    "sass": "^1.69.0",
+    "webpack": "^5.89.0"
+  }
+}

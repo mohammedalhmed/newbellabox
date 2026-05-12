@@ -1,0 +1,152 @@
+{% extends 'layouts/master.twig' %}
+
+{% block title %}{{ store.name }} - {{ 'common.home' | trans }}{% endblock %}
+
+{% block content %}
+<div class="container">
+    {# Hero Section #}
+    <section class="hero-section" style="margin: 0 calc(var(--spacing-lg) * -1); padding: var(--spacing-2xl) var(--spacing-lg); background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD0 100%); margin-bottom: var(--spacing-2xl);">
+        <div class="container">
+            <div class="hero-content" style="text-align: center; padding: var(--spacing-2xl) 0;">
+                <h1 style="font-size: var(--font-size-3xl); margin-bottom: var(--spacing-lg); color: var(--color-text-dark);">
+                    {{ 'common.welcome' | trans }}
+                </h1>
+                <p style="font-size: var(--font-size-lg); color: var(--color-text-light); margin-bottom: var(--spacing-2xl); max-width: 600px; margin-left: auto; margin-right: auto;">
+                    اكتشفي أفضل مستحضرات التجميل والعناية بالبشرة الأصلية والموثوقة
+                </p>
+                <a href="#" class="btn btn-primary btn-lg">
+                    {{ 'products.add_to_cart' | trans }}
+                </a>
+            </div>
+        </div>
+    </section>
+    
+    {# Features Section #}
+    <section class="features-section" style="margin-bottom: var(--spacing-2xl);">
+        <div class="row">
+            <div class="col-3">
+                <div class="feature-card" style="text-align: center; padding: var(--spacing-2xl);">
+                    <div style="font-size: 48px; color: var(--color-primary); margin-bottom: var(--spacing-lg);">
+                        <i class="fas fa-headset"></i>
+                    </div>
+                    <h3 style="margin-bottom: var(--spacing-md);">{{ 'features.support_24_7' | trans }}</h3>
+                    <p style="color: var(--color-text-light);">{{ 'features.support_24_7_desc' | trans }}</p>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="feature-card" style="text-align: center; padding: var(--spacing-2xl);">
+                    <div style="font-size: 48px; color: var(--color-primary); margin-bottom: var(--spacing-lg);">
+                        <i class="fas fa-truck"></i>
+                    </div>
+                    <h3 style="margin-bottom: var(--spacing-md);">{{ 'features.fast_shipping' | trans }}</h3>
+                    <p style="color: var(--color-text-light);">{{ 'features.fast_shipping_desc' | trans }}</p>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="feature-card" style="text-align: center; padding: var(--spacing-2xl);">
+                    <div style="font-size: 48px; color: var(--color-primary); margin-bottom: var(--spacing-lg);">
+                        <i class="fas fa-lock"></i>
+                    </div>
+                    <h3 style="margin-bottom: var(--spacing-md);">{{ 'features.secure_payment' | trans }}</h3>
+                    <p style="color: var(--color-text-light);">{{ 'features.secure_payment_desc' | trans }}</p>
+                </div>
+            </div>
+            <div class="col-3">
+                <div class="feature-card" style="text-align: center; padding: var(--spacing-2xl);">
+                    <div style="font-size: 48px; color: var(--color-primary); margin-bottom: var(--spacing-lg);">
+                        <i class="fas fa-check-circle"></i>
+                    </div>
+                    <h3 style="margin-bottom: var(--spacing-md);">{{ 'features.authentic_products' | trans }}</h3>
+                    <p style="color: var(--color-text-light);">{{ 'features.authentic_products_desc' | trans }}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    {# Products Section #}
+    <section class="products-section" style="margin-bottom: var(--spacing-2xl);">
+        <h2 style="text-align: center; margin-bottom: var(--spacing-2xl);">{{ 'navigation.all_products' | trans }}</h2>
+        
+        <div class="products-grid">
+            {% for i in 1..8 %}
+            <div class="product-card">
+                <div class="product-image" style="background: linear-gradient(135deg, #FCE4EC 0%, #F8BBD0 100%);">
+                    <img src="https://via.placeholder.com/250x250?text=Product+{{ i }}" alt="منتج">
+                    <span class="product-badge">{{ i % 2 == 0 ? 'جديد' : 'خصم 20%' }}</span>
+                    <button class="product-wishlist-btn" data-product-id="{{ i }}" aria-label="إضافة للمفضلة">
+                        <i class="far fa-heart"></i>
+                    </button>
+                </div>
+                <div class="product-info">
+                    <span class="product-category">{{ 'navigation.skincare' | trans }}</span>
+                    <h3 class="product-name">منتج تجميل عالي الجودة رقم {{ i }}</h3>
+                    <div class="product-rating">
+                        <span class="stars">
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star"></i>
+                            <i class="fas fa-star-half-alt"></i>
+                        </span>
+                        <span class="count">({{ 100 + i * 5 }} تقييم)</span>
+                    </div>
+                    <div class="product-price">
+                        <span class="product-price-current">{{ (100 + i * 5) }} ر.س</span>
+                        <span class="product-price-original">{{ (120 + i * 5) }} ر.س</span>
+                        <span class="product-discount">-15%</span>
+                    </div>
+                    <button class="product-add-to-cart" data-product-id="{{ i }}">
+                        {{ 'products.add_to_cart' | trans }}
+                    </button>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        
+        <div style="text-align: center; margin-top: var(--spacing-2xl);">
+            <a href="#" class="btn btn-outline">عرض جميع المنتجات</a>
+        </div>
+    </section>
+    
+    {# FAQ Section #}
+    <section class="faq-section" style="margin-bottom: var(--spacing-2xl); background-color: var(--color-bg-light); padding: var(--spacing-2xl); border-radius: var(--radius-lg);">
+        <h2 style="text-align: center; margin-bottom: var(--spacing-2xl);">{{ 'faq.title' | trans }}</h2>
+        
+        <div style="max-width: 800px; margin: 0 auto;">
+            {% for i in 1..5 %}
+            <div class="accordion-item" style="margin-bottom: var(--spacing-md); border: 1px solid var(--color-border); border-radius: var(--radius-md); overflow: hidden;">
+                <button class="accordion-header" style="width: 100%; padding: var(--spacing-lg); background-color: var(--color-bg-white); border: none; cursor: pointer; text-align: right; font-weight: 600; display: flex; justify-content: space-between; align-items: center;">
+                    <span>{{ 'faq.q' ~ i | trans }}</span>
+                    <i class="fas fa-chevron-down"></i>
+                </button>
+                <div class="accordion-content" style="padding: var(--spacing-lg); background-color: var(--color-bg-white); border-top: 1px solid var(--color-border); display: none;">
+                    {{ 'faq.a' ~ i | trans }}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+</div>
+
+<style>
+    .accordion-item.active .accordion-content {
+        display: block;
+    }
+    
+    .accordion-item.active .accordion-header i {
+        transform: rotate(180deg);
+    }
+    
+    .feature-card {
+        background-color: var(--color-bg-white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        transition: all var(--transition-base);
+    }
+    
+    .feature-card:hover {
+        box-shadow: var(--shadow-lg);
+        transform: translateY(-4px);
+    }
+</style>
+{% endblock %}

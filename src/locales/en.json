@@ -1,0 +1,85 @@
+{
+  "common": {
+    "home": "Home",
+    "shop": "Shop",
+    "about": "About Us",
+    "contact": "Contact",
+    "search": "Search here",
+    "cart": "Cart",
+    "account": "My Account",
+    "login": "Sign In",
+    "register": "Create Account",
+    "logout": "Sign Out",
+    "welcome": "Welcome",
+    "loading": "Loading...",
+    "error": "An error occurred",
+    "success": "Success"
+  },
+  "navigation": {
+    "discounts": "Discounts",
+    "blog": "Blog",
+    "all_products": "All Products",
+    "skincare": "Skincare",
+    "makeup": "Makeup",
+    "brands": "Brands",
+    "categories": "Categories"
+  },
+  "products": {
+    "add_to_cart": "Add to Cart",
+    "add_to_wishlist": "Add to Wishlist",
+    "remove_from_wishlist": "Remove from Wishlist",
+    "price": "Price",
+    "discount": "Discount",
+    "in_stock": "In Stock",
+    "out_of_stock": "Out of Stock",
+    "quantity": "Quantity",
+    "description": "Description",
+    "reviews": "Reviews",
+    "related_products": "Related Products"
+  },
+  "cart": {
+    "empty_cart": "Your cart is empty",
+    "continue_shopping": "Continue Shopping",
+    "checkout": "Checkout",
+    "subtotal": "Subtotal",
+    "shipping": "Shipping",
+    "tax": "Tax",
+    "total": "Total",
+    "remove": "Remove",
+    "update": "Update"
+  },
+  "footer": {
+    "about_us": "About BellaBox",
+    "privacy_policy": "Privacy Policy",
+    "terms_conditions": "Terms & Conditions",
+    "shipping_policy": "Shipping Policy",
+    "return_policy": "Return Policy",
+    "contact_us": "Contact Us",
+    "follow_us": "Follow Us",
+    "payment_methods": "Payment Methods",
+    "all_rights_reserved": "All Rights Reserved"
+  },
+  "features": {
+    "support_24_7": "24/7 Support",
+    "support_24_7_desc": "Support team available around the clock",
+    "fast_shipping": "Fast Shipping",
+    "fast_shipping_desc": "Shipping to all regions of the Kingdom",
+    "secure_payment": "Secure Payment",
+    "secure_payment_desc": "Safe and reliable payment methods",
+    "authentic_products": "Authentic Products",
+    "authentic_products_desc": "All our products are 100% authentic"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "q1": "What payment methods are available?",
+    "a1": "We accept all major payment methods including credit cards, bank transfers, and cash on delivery.",
+    "q2": "Are BellaBox products authentic?",
+    "a2": "Yes, all our products are 100% authentic and verified from official distributors.",
+    "q3": "How long does delivery take?",
+    "a3": "Delivery takes 1-3 business days depending on your location.",
+    "q4": "Do you ship to all regions of Saudi Arabia?",
+    "a4": "Yes, we ship to all regions of the Kingdom of Saudi Arabia.",
+    "q5": "What is your return and exchange policy?",
+    "a5": "You can return products within 30 days of purchase if in original condition."
+  }
+}

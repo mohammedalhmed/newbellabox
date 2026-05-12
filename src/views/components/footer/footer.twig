@@ -1,0 +1,151 @@
+{# Footer Component #}
+<footer class="footer">
+    {# Footer Top #}
+    <div class="footer-top">
+        <div class="footer-content">
+            <div class="footer-grid">
+                {# About Section #}
+                <div class="footer-section">
+                    <h3 class="footer-section-title">{{ 'footer.about_us' | trans }}</h3>
+                    <div class="footer-about">
+                        <div class="footer-logo">
+                            {% if store.logo %}
+                                <img src="{{ store.logo }}" alt="{{ store.name }}">
+                            {% endif %}
+                            <span class="footer-logo-text">{{ store.name }}</span>
+                        </div>
+                        <p class="footer-description">
+                            {{ store.description | default('متجر متخصص في بيع مستحضرات التجميل والعناية بالبشرة الأصلية والموثوقة.') }}
+                        </p>
+                        <div class="footer-social">
+                            <a href="{{ store.social_media.facebook }}" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+                                <i class="fab fa-facebook-f"></i>
+                            </a>
+                            <a href="{{ store.social_media.instagram }}" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="{{ store.social_media.twitter }}" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="Twitter">
+                                <i class="fab fa-twitter"></i>
+                            </a>
+                            <a href="{{ store.social_media.whatsapp }}" class="footer-social-link" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
+                                <i class="fab fa-whatsapp"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                {# Quick Links #}
+                <div class="footer-section">
+                    <h3 class="footer-section-title">{{ 'navigation.categories' | trans }}</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link">
+                            <a href="#">{{ 'navigation.skincare' | trans }}</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#">{{ 'navigation.makeup' | trans }}</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#">{{ 'navigation.brands' | trans }}</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#">{{ 'navigation.discounts' | trans }}</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#">{{ 'navigation.blog' | trans }}</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                {# Customer Service #}
+                <div class="footer-section">
+                    <h3 class="footer-section-title">{{ 'common.contact' | trans }}</h3>
+                    <ul class="footer-links">
+                        <li class="footer-link">
+                            <a href="#">{{ 'footer.privacy_policy' | trans }}</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#">{{ 'footer.terms_conditions' | trans }}</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#">{{ 'footer.shipping_policy' | trans }}</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#">{{ 'footer.return_policy' | trans }}</a>
+                        </li>
+                        <li class="footer-link">
+                            <a href="#">{{ 'footer.contact_us' | trans }}</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                {# Contact Info #}
+                <div class="footer-section">
+                    <h3 class="footer-section-title">{{ 'footer.contact_us' | trans }}</h3>
+                    <div class="footer-contact">
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="fas fa-phone"></i>
+                            </div>
+                            <div class="footer-contact-text">
+                                <span class="footer-contact-label">{{ 'common.contact' | trans }}</span>
+                                <a href="tel:{{ store.phone }}" class="footer-contact-value">{{ store.phone }}</a>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="fas fa-envelope"></i>
+                            </div>
+                            <div class="footer-contact-text">
+                                <span class="footer-contact-label">{{ 'common.contact' | trans }}</span>
+                                <a href="mailto:{{ store.email }}" class="footer-contact-value">{{ store.email }}</a>
+                            </div>
+                        </div>
+                        <div class="footer-contact-item">
+                            <div class="footer-contact-icon">
+                                <i class="fas fa-map-marker-alt"></i>
+                            </div>
+                            <div class="footer-contact-text">
+                                <span class="footer-contact-label">{{ 'common.contact' | trans }}</span>
+                                <span class="footer-contact-value">{{ store.address }}</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    {# Footer Bottom #}
+    <div class="footer-bottom">
+        <div class="footer-bottom-content">
+            <div class="footer-copyright">
+                &copy; {{ 'now' | date('Y') }} {{ store.name }}. {{ 'footer.all_rights_reserved' | trans }}
+            </div>
+            <div>
+                <h4 style="color: white; margin-bottom: 10px; font-size: 14px;">{{ 'footer.payment_methods' | trans }}</h4>
+                <div class="footer-payments">
+                    <div class="footer-payment-method">
+                        <i class="fab fa-cc-visa" style="font-size: 24px; color: #1A1F71;"></i>
+                    </div>
+                    <div class="footer-payment-method">
+                        <i class="fab fa-cc-mastercard" style="font-size: 24px; color: #EB001B;"></i>
+                    </div>
+                    <div class="footer-payment-method">
+                        <i class="fab fa-cc-paypal" style="font-size: 24px; color: #003087;"></i>
+                    </div>
+                    <div class="footer-payment-method">
+                        <i class="fab fa-cc-amex" style="font-size: 24px; color: #006FCF;"></i>
+                    </div>
+                </div>
+            </div>
+            <ul class="footer-bottom-links">
+                <li class="footer-bottom-link">
+                    <a href="#">{{ 'footer.privacy_policy' | trans }}</a>
+                </li>
+                <li class="footer-bottom-link">
+                    <a href="#">{{ 'footer.terms_conditions' | trans }}</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</footer>

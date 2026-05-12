@@ -1,0 +1,159 @@
+{# Header Component #}
+<header class="header">
+    {# Header Top Bar #}
+    <div class="header-top">
+        <div class="header-top-content">
+            <div class="header-top-left">
+                <a href="#" class="header-top-link">
+                    <i class="fas fa-phone"></i>
+                    {{ store.phone }}
+                </a>
+                <a href="mailto:{{ store.email }}" class="header-top-link">
+                    <i class="fas fa-envelope"></i>
+                    {{ store.email }}
+                </a>
+            </div>
+            <div class="header-top-right">
+                <a href="#" class="header-top-link">{{ 'common.about' | trans }}</a>
+                <a href="#" class="header-top-link">{{ 'common.contact' | trans }}</a>
+            </div>
+        </div>
+    </div>
+    
+    {# Main Header #}
+    <div class="header-main">
+        <div class="header-content">
+            {# Logo #}
+            <div class="header-logo">
+                <a href="{{ store.url }}">
+                    {% if store.logo %}
+                        <img src="{{ store.logo }}" alt="{{ store.name }}" title="{{ store.name }}">
+                    {% else %}
+                        <span>{{ store.name }}</span>
+                    {% endif %}
+                </a>
+            </div>
+            
+            {# Navigation Menu #}
+            <nav class="header-nav">
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="{{ store.url }}" class="nav-link active">
+                            {{ 'common.home' | trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            {{ 'navigation.discounts' | trans }}
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            {{ 'navigation.all_products' | trans }}
+                            <i class="fas fa-chevron-down"></i>
+                        </a>
+                        <div class="nav-dropdown">
+                            <a href="#" class="nav-dropdown-item">{{ 'navigation.skincare' | trans }}</a>
+                            <a href="#" class="nav-dropdown-item">{{ 'navigation.makeup' | trans }}</a>
+                            <a href="#" class="nav-dropdown-item">{{ 'navigation.brands' | trans }}</a>
+                        </div>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">
+                            {{ 'navigation.blog' | trans }}
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+            
+            {# Header Actions #}
+            <div class="header-actions">
+                {# Search Bar #}
+                <div class="header-search">
+                    <input type="text" placeholder="{{ 'common.search' | trans }}" aria-label="{{ 'common.search' | trans }}">
+                    <button type="submit" aria-label="{{ 'common.search' | trans }}">
+                        <i class="fas fa-search"></i>
+                    </button>
+                </div>
+                
+                {# Account Icon #}
+                <button class="header-icon-btn" aria-label="{{ 'common.account' | trans }}">
+                    <i class="fas fa-user"></i>
+                </button>
+                
+                {# Cart Icon #}
+                <button class="header-icon-btn cart-btn" aria-label="{{ 'common.cart' | trans }}">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="header-icon-badge">0</span>
+                    
+                    {# Cart Dropdown #}
+                    <div class="cart-dropdown">
+                        <div class="cart-dropdown-content">
+                            <p style="text-align: center; color: #757575; padding: 20px;">
+                                {{ 'cart.empty_cart' | trans }}
+                            </p>
+                        </div>
+                        <div class="cart-dropdown-footer">
+                            <div class="cart-total">
+                                <span>{{ 'cart.total' | trans }}:</span>
+                                <span>0 ر.س</span>
+                            </div>
+                            <div class="cart-actions">
+                                <a href="#" class="btn btn-secondary" style="flex: 1; text-align: center;">
+                                    {{ 'cart.continue_shopping' | trans }}
+                                </a>
+                                <a href="#" class="btn btn-primary" style="flex: 1; text-align: center;">
+                                    {{ 'cart.checkout' | trans }}
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </button>
+                
+                {# Mobile Menu Toggle #}
+                <button class="mobile-menu-toggle" aria-label="فتح القائمة">
+                    <i class="fas fa-bars"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    {# Mobile Navigation #}
+    <div class="mobile-nav-overlay"></div>
+    <nav class="mobile-nav">
+        <div class="mobile-nav-header">
+            <span>{{ 'navigation.categories' | trans }}</span>
+            <button class="mobile-nav-close" aria-label="إغلاق القائمة">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        
+        <div class="mobile-search">
+            <input type="text" placeholder="{{ 'common.search' | trans }}" aria-label="{{ 'common.search' | trans }}">
+        </div>
+        
+        <ul class="mobile-nav-menu">
+            <li class="mobile-nav-item">
+                <a href="{{ store.url }}" class="mobile-nav-link">{{ 'common.home' | trans }}</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="#" class="mobile-nav-link">{{ 'navigation.discounts' | trans }}</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="#" class="mobile-nav-link">{{ 'navigation.all_products' | trans }}</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="#" class="mobile-nav-link">{{ 'navigation.skincare' | trans }}</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="#" class="mobile-nav-link">{{ 'navigation.makeup' | trans }}</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="#" class="mobile-nav-link">{{ 'navigation.brands' | trans }}</a>
+            </li>
+            <li class="mobile-nav-item">
+                <a href="#" class="mobile-nav-link">{{ 'navigation.blog' | trans }}</a>
+            </li>
+        </ul>
+    </nav>
+</header>
