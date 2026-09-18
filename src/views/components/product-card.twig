@@ -1,0 +1,16 @@
+<article class="product-card" data-product-id="{{ product.id }}">
+  <div class="product-media">
+    <a href="{{ product.url }}" aria-label="{{ product.name }}">
+      <img src="{{ product.image.url }}" alt="{{ product.image.alt|default(product.name) }}" loading="lazy">
+    </a>
+    {% if product.promotion_title %}<span class="product-badge">{{ product.promotion_title }}</span>{% elseif product.is_on_sale %}<span class="product-badge">عرض خاص</span>{% endif %}
+    <button class="product-wishlist" type="button" data-wishlist-id="{{ product.id }}" onclick="salla.wishlist.toggle('{{ product.id }}')" aria-label="إضافة {{ product.name }} إلى المفضلة"><i class="sicon-heart"></i></button>
+  </div>
+  <div class="product-card-body">
+    {% if product.category %}<span class="product-category">{{ product.category.name }}</span>{% endif %}
+    <h3 class="product-title"><a href="{{ product.url }}">{{ product.name }}</a></h3>
+    {% if product.rating %}<div class="product-rating"><span>★ {{ product.rating.stars }}</span><span class="count">({{ product.rating.count }})</span></div>{% endif %}
+    <div class="product-price">{% if product.is_on_sale %}<strong class="product-price-current">{{ product.sale_price|money }}</strong><del class="product-price-old">{{ product.regular_price|money }}</del>{% else %}<strong class="product-price-current">{{ product.price|money }}</strong>{% endif %}</div>
+    {% if product.is_available %}<salla-add-product-button class="product-add" product-id="{{ product.id }}" product-status="{{ product.status }}" product-type="{{ product.type }}" loader-position="end">{{ product.add_to_cart_label|default('أضيفي للسلة') }}</salla-add-product-button>{% else %}<button class="product-add" type="button" disabled>غير متوفر حاليًا</button>{% endif %}
+  </div>
+</article>

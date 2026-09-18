@@ -1,0 +1,3 @@
+{% extends 'layouts/master.twig' %}
+{% block title %}{{ page.title }} — {{ store.name }}{% endblock %}
+{% block content %}<div class="page-shell"><div class="container"><nav class="breadcrumbs"><salla-breadcrumb></salla-breadcrumb></nav>{% if page.type == 'customised' %}<div class="s-blocks-wrapper">{% hook 'information_page.information_page' %}</div>{% else %}<article class="content-card"><span class="eyebrow">معلومات تهمك</span><h1>{{ page.title }}</h1><div class="prose">{{ page.content|raw }}</div>{% if page.id %}<salla-comments data-testid="store-page-comments" item-id="{{ page.id }}" type="page"></salla-comments>{% endif %}</article>{% endif %}</div></div>{% endblock %}
