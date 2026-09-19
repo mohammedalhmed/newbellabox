@@ -1,28 +1,28 @@
 <header class="site-header {{ theme.settings.get('header_is_sticky', true) ? 'is-sticky' : '' }}">
   <div class="announcement-bar"><div class="container announcement-inner"><span><i class="sicon-shipping-fast"></i> شحن مجاني للطلبات فوق ٢٥٠ ر.س</span><span class="announcement-extra">اختيارات أصلية. عناية تستحقينها.</span></div></div>
   <div class="header-main"><div class="container header-inner">
-    <button class="mobile-menu-toggle" type="button" aria-label="فتح القائمة" aria-expanded="false"><i class="sicon-menu"></i></button>
+    <button class="mobile-menu-toggle" type="button" aria-label="فتح القائمة" aria-expanded="false" aria-controls="mobile-navigation"><i class="sicon-menu"></i></button>
     <a class="brand-lockup" href="{{ store.url }}" aria-label="{{ store.name }} - الرئيسية">
       {% if store.logo %}<img src="{{ store.logo }}" alt="{{ store.name }}">{% else %}<span class="brand-mark">B</span><span class="brand-name">{{ store.name }}</span>{% endif %}
     </a>
     <nav class="main-nav" aria-label="التنقل الرئيسي">
-      <a class="nav-link is-active" href="{{ store.url }}">الرئيسية</a>
-      <a class="nav-link" href="{{ link('/products') }}">تسوقي الآن</a>
-      <a class="nav-link" href="{{ link('/offers') }}">العروض</a>
-      <a class="nav-link" href="{{ link('/brands') }}">الماركات</a>
-      {% if theme.settings.get('important_links', true) %}<a class="nav-link" href="{{ link('/blog') }}">المجلة</a>{% endif %}
+      <a class="nav-link" data-nav-link href="{{ store.url }}">الرئيسية</a>
+      <a class="nav-link" data-nav-link href="{{ link('/products') }}">تسوقي الآن</a>
+      <a class="nav-link" data-nav-link href="{{ link('/offers') }}">العروض</a>
+      <a class="nav-link" data-nav-link href="{{ link('/brands') }}">الماركات</a>
+      {% if theme.settings.get('important_links', true) %}<a class="nav-link" data-nav-link href="{{ link('/blog') }}">المجلة</a>{% endif %}
     </nav>
     <div class="header-actions">
       <button class="header-action search-trigger" type="button" aria-label="البحث"><i class="sicon-search"></i></button>
       <button class="header-action" type="button" aria-label="الحساب" onclick="salla.event.dispatch('login::open')"><i class="sicon-user"></i></button>
-      <a class="header-action cart-action" href="{{ link('/cart') }}" aria-label="السلة"><i class="sicon-shopping-bag"></i><span class="cart-count" data-cart-count>0</span></a>
+      <salla-cart-summary class="header-action cart-action" show-cart-label="false" data-testid="store-header-cart"></salla-cart-summary>
     </div>
   </div></div>
   <div class="mobile-nav-overlay" data-mobile-close></div>
-  <aside class="mobile-nav" aria-label="قائمة الجوال" aria-hidden="true">
+  <aside class="mobile-nav" id="mobile-navigation" aria-label="قائمة الجوال" aria-hidden="true">
     <div class="mobile-nav-head"><span class="brand-name">القائمة</span><button type="button" class="mobile-nav-close" aria-label="إغلاق القائمة" data-mobile-close><i class="sicon-cancel"></i></button></div>
     <div class="mobile-search"><button class="mobile-search-trigger search-trigger" type="button"><i class="sicon-search"></i><span>ابحثي عن منتج أو ماركة</span></button></div>
-    <nav class="mobile-nav-links"><a href="{{ store.url }}">الرئيسية</a><a href="{{ link('/products') }}">كل المنتجات</a><a href="{{ link('/offers') }}">العروض</a><a href="{{ link('/brands') }}">الماركات</a><a href="{{ link('/blog') }}">المجلة</a><a href="{{ link('/page/contact') }}">تواصلي معنا</a></nav>
-    <div class="mobile-nav-foot"><span>تحتاجين مساعدة؟</span><a href="tel:{{ store.phone }}">{{ store.phone }}</a></div>
+    <nav class="mobile-nav-links"><a data-nav-link href="{{ store.url }}">الرئيسية</a><a data-nav-link href="{{ link('/products') }}">كل المنتجات</a><a data-nav-link href="{{ link('/offers') }}">العروض</a><a data-nav-link href="{{ link('/brands') }}">الماركات</a><a data-nav-link href="{{ link('/blog') }}">المجلة</a><a data-nav-link href="{{ link('/page/contact') }}">تواصلي معنا</a></nav>
+    <div class="mobile-nav-foot"><span>تحتاجين مساعدة؟</span>{% if store.phone %}<a href="tel:{{ store.phone }}">{{ store.phone }}</a>{% endif %}{% if store.email %}<a href="mailto:{{ store.email }}">{{ store.email }}</a>{% endif %}</div>
   </aside>
 </header>

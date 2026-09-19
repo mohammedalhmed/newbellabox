@@ -1,4 +1,47 @@
 {% extends 'layouts/master.twig' %}
 {% block title %}{{ product.name }} — {{ store.name }}{% endblock %}
-{% block content %}<div class="page-shell"><div class="container">{% if theme.settings.get('product_show_breadcrumbs', true) %}<nav class="breadcrumbs"><salla-breadcrumb></salla-breadcrumb></nav>{% endif %}<div class="product-detail-layout" id="product-{{ product.id }}"><div class="product-gallery"><div class="product-main-image"><img id="product-main-image" src="{{ product.image.url }}" alt="{{ product.image.alt|default(product.name) }}"></div>{% if product.images|length > 1 %}<div class="product-thumbs">{% for image in product.images %}<button class="product-thumb {{ loop.first?'is-active':'' }}" type="button" data-image-src="{{ image.url }}" aria-label="عرض صورة {{ loop.index }}"><img src="{{ image.url }}" alt="{{ image.alt|default(product.name) }}" loading="lazy"></button>{% endfor %}</div>{% endif %}</div><div class="product-detail-info">{% if product.brand %}<a class="product-category" href="{{ product.brand.url }}">{{ product.brand.name }}</a>{% endif %}{% if product.promotion_title %}<span class="product-badge">{{ product.promotion_title }}</span>{% endif %}<h1>{{ product.name }}</h1>{% if product.subtitle %}<p class="product-subtitle">{{ product.subtitle }}</p>{% endif %}{% if product.rating %}<div class="product-rating"><span>★ {{ product.rating.stars }}</span><span class="count">({{ product.rating.count }} تقييم)</span></div>{% endif %}<div class="detail-price">{% if product.is_on_sale %}<strong>{{ product.sale_price|money }}</strong><del>{{ product.regular_price|money }}</del>{% else %}<strong>{{ product.price|money }}</strong>{% endif %}</div>{% hook 'product:single.description.start' %}<div class="detail-description">{{ product.description|replace({'&nbsp;':' '})|raw }}</div>{% if product.tags|length and theme.settings.get('show_tags', true) %}<div class="detail-tags">{% for tag in product.tags %}<a href="{{ tag.url }}">#{{ tag.name }}</a>{% endfor %}</div>{% endif %}<form class="product-form" enctype="multipart/form-data" method="post" onsubmit="return salla.form.onSubmit('cart.addItem', event)"><input type="hidden" name="id" value="{{ product.id }}">{% hook 'product:single.form.start' %}{% include 'pages/partials/product/options.twig' %}{% hook 'product:single.form.end' %}{% if product.is_hidden_quantity %}<input type="hidden" name="quantity" value="1">{% else %}<label>الكمية</label><salla-quantity-input max="{{ product.max_quantity }}" value="1" name="quantity"></salla-quantity-input>{% endif %}<salla-add-product-button class="btn btn-primary" product-id="{{ product.id }}" product-status="{{ product.status }}" product-type="{{ product.type }}" {{ theme.settings.get('sticky_add_to_cart') ? 'support-sticky-bar' : '' }} width="wide">{{ product.add_to_cart_label|default('أضيفي للسلة') }}</salla-add-product-button></form><div class="product-benefits"><div class="benefit"><i class="sicon-shield-check"></i>منتج أصلي</div><div class="benefit"><i class="sicon-shipping-fast"></i>شحن سريع</div><div class="benefit"><i class="sicon-refresh"></i>استرجاع سهل</div></div></div></div>{% hook 'product:single.description.end' %}<salla-offer data-testid="store-product-offer"></salla-offer>{% if store.settings.rating.show_on_product %}<salla-comments data-testid="store-product-comments" item-id="{{ product.id }}" type="product"></salla-comments>{% endif %}<div class="related-products"><salla-products-slider data-testid="store-product-related" source="related" source-value="{{ product.id }}" block-title="منتجات قد تعجبك" display-all-url></salla-products-slider></div></div></div>{% endblock %}
-{% block scripts %}<script defer src="{{ 'product.js'|asset }}"></script><script>document.querySelectorAll('.product-thumb').forEach(function(btn){btn.addEventListener('click',function(){document.getElementById('product-main-image').src=this.dataset.imageSrc;document.querySelectorAll('.product-thumb').forEach(function(x){x.classList.remove('is-active')});this.classList.add('is-active')})})</script>{% endblock %}
+{% block description %}{{ product.subtitle|default(product.description|striptags)|slice(0,155) }}{% endblock %}
+{% block content %}
+  <div class="page-shell"><div class="container">
+    {% if theme.settings.get('product_show_breadcrumbs', true) %}<nav class="breadcrumbs" aria-label="مسار التنقل"><salla-breadcrumb></salla-breadcrumb></nav>{% endif %}
+    <div class="product-detail-layout" id="product-{{ product.id }}">
+      <div class="product-gallery">
+        <div class="product-main-image"><img id="product-main-image" src="{{ product.image.url }}" alt="{{ product.image.alt|default(product.name) }}"></div>
+        {% if product.images|length > 1 %}<div class="product-thumbs" aria-label="صور المنتج">{% for image in product.images %}<button class="product-thumb {{ loop.first?'is-active':'' }}" type="button" data-image-src="{{ image.url }}" data-image-alt="{{ image.alt|default(product.name) }}" aria-label="عرض صورة {{ loop.index }}" aria-pressed="{{ loop.first ? 'true' : 'false' }}"><img src="{{ image.url }}" alt="{{ image.alt|default(product.name) }}" loading="lazy"></button>{% endfor %}</div>{% endif %}
+      </div>
+      <div class="product-detail-info">
+        {% if product.brand %}<a class="product-category" href="{{ product.brand.url }}">{{ product.brand.name }}</a>{% endif %}
+        {% if product.promotion_title %}<span class="product-badge">{{ product.promotion_title }}</span>{% endif %}
+        <h1>{{ product.name }}</h1>
+        {% if product.subtitle %}<p class="product-subtitle">{{ product.subtitle }}</p>{% endif %}
+        {% if product.rating %}<div class="product-rating" aria-label="تقييم {{ product.rating.stars }} من 5"><span>★ {{ product.rating.stars }}</span><span class="count">({{ product.rating.count }} تقييم)</span></div>{% endif %}
+        <div class="detail-price">{% if product.is_on_sale %}<strong>{{ product.sale_price|money }}</strong><del>{{ product.regular_price|money }}</del>{% else %}<strong>{{ product.price|money }}</strong>{% endif %}</div>
+        {% if product.is_available %}<salla-installment class="product-installment" price="{{ product.sale_price|default(product.price) }}"></salla-installment>{% endif %}
+        {% hook 'product:single.description.start' %}
+        {% if product.description %}<div class="detail-description">{{ product.description|replace({'&nbsp;':' '})|raw }}</div>{% endif %}
+        {% if product.tags|length and theme.settings.get('show_tags', true) %}<div class="detail-tags" aria-label="وسوم المنتج">{% for tag in product.tags %}<a href="{{ tag.url }}">#{{ tag.name }}</a>{% endfor %}</div>{% endif %}
+        {% if product.is_available %}
+          <form class="product-form" enctype="multipart/form-data" method="post" onsubmit="return salla.form.onSubmit('cart.addItem', event)">
+            <input type="hidden" name="id" value="{{ product.id }}">
+            {% hook 'product:single.form.start' %}
+            {% include 'pages/partials/product/options.twig' %}
+            {% hook 'product:single.form.end' %}
+            {% if product.is_hidden_quantity %}<input type="hidden" name="quantity" value="1">{% else %}<label for="product-quantity">الكمية</label><salla-quantity-input id="product-quantity" max="{{ product.max_quantity }}" value="1" name="quantity"></salla-quantity-input>{% endif %}
+            <salla-add-product-button class="btn btn-primary" product-id="{{ product.id }}" product-status="{{ product.status }}" product-type="{{ product.type }}" {{ theme.settings.get('sticky_add_to_cart') ? 'support-sticky-bar' : '' }} width="wide">{{ product.add_to_cart_label|default('أضيفي للسلة') }}</salla-add-product-button>
+          </form>
+        {% else %}
+          <div class="notice">هذا المنتج غير متوفر حاليًا. اتركي بياناتك ليصلك تنبيه عند عودته.</div>
+          <salla-product-availability class="product-availability" product-id="{{ product.id }}" channels="sms,email" is-subscribed="{{ product.is_subscribed|default(false) }}"></salla-product-availability>
+        {% endif %}
+        <div class="product-benefits"><div class="benefit"><i class="sicon-shield-check"></i>منتج أصلي</div><div class="benefit"><i class="sicon-shipping-fast"></i>شحن سريع</div><div class="benefit"><i class="sicon-refresh"></i>استرجاع سهل</div></div>
+        <div class="product-support-grid"><div class="product-support-card"><i class="sicon-headphones"></i><span><strong>تحتاجين مساعدة؟</strong>{% if store.phone %}<a href="tel:{{ store.phone }}">تحدثي معنا الآن</a>{% else %}فريقنا جاهز لخدمتك{% endif %}</span></div><div class="product-support-card"><i class="sicon-shipping-fast"></i><span><strong>متى يصلني طلبي؟</strong><a href="{{ link('/page/shipping-policy') }}">تعرفي على سياسة الشحن</a></span></div></div>
+        <div class="product-share"><span>شاركي المنتج</span><salla-social-share platforms="whatsapp,facebook,twitter,copy_link" url="{{ product.url }}" url-name="{{ product.name }}"></salla-social-share></div>
+      </div>
+    </div>
+    {% hook 'product:single.description.end' %}
+    <salla-offer data-testid="store-product-offer"></salla-offer>
+    {% if store.settings.rating.show_on_product %}<salla-comments data-testid="store-product-comments" item-id="{{ product.id }}" type="product"></salla-comments>{% endif %}
+    <div class="related-products"><salla-products-slider data-testid="store-product-related" source="related" source-value="{{ product.id }}" block-title="منتجات قد تعجبك" display-all-url></salla-products-slider></div>
+  </div></div>
+{% endblock %}
+{% block scripts %}<script defer src="{{ 'product.js'|asset }}"></script>{% endblock %}
