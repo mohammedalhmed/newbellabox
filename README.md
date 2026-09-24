@@ -63,3 +63,9 @@ salla theme preview
 ## التحقق المنفذ
 
 تم التحقق من صحة ملفات JSON وJavaScript، ومراجعة مراجع القوالب والجزئيات، والتأكد من وجود جميع مسارات الصفحات الرسمية. تم أيضًا إزالة تفاعل النشرة الوهمي، وربط المفضلة بمكالمات Salla SDK، وإضافة مكوّنات Twilight الرسمية لتوفر المنتج والتقسيط والمشاركة. يتبقى اختبار المعاينة المرئية داخل متجر Demo في Salla Partners للتأكد من بيانات المتجر الفعلية وتوافق Web Components مع إصدار الحساب.
+
+## مشروع تعلم الآلة لمنتجات بيلابوكس
+
+أضيف إلى المستودع مشروع عملي منفصل لتدريب نموذج **CNN** يصنّف فئات منتجات بيلابوكس من الصور. يبني المشروع Dataset من Sitemap المتجر العام وصور CDN الخاصة بالمنتجات، ولا يستخدم Dataset تعليميًا جاهزًا. التدريب مصمم لـ Google Colab ويشمل Grouped Split حسب المنتج، Augmentation، Class Weights، Early Stopping، وتقارير التقييم.
+
+التفاصيل والأوامر الكاملة موجودة في [ML_PROJECT.md](ML_PROJECT.md)، ودفتر التشغيل الجاهز في [notebooks/BellaBox_Product_CNN_Colab.ipynb](notebooks/BellaBox_Product_CNN_Colab.ipynb). أهم الملفات هي `ml/build_dataset.py` لبناء البيانات، و`ml/train.py` للتدريب وحفظ `best.keras` و`final_model.keras` وCheckpoints، و`ml/predict.py` لاختبار صورة جديدة. يجب تشغيل التدريب النهائي على Google Colab مع ربط Google Drive، ثم مراجعة `manifest.csv` و`metrics.json` قبل التسليم.
