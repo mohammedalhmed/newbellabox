@@ -25,6 +25,11 @@
   <link rel="stylesheet" href="{{ 'assets/styles/footer.css'|asset }}">
   <link rel="stylesheet" href="{{ 'assets/styles/account.css'|asset }}">
   <style>:root{--brand-primary:{{ theme.color.primary|default('#c45678') }};--brand-dark:{{ theme.color.darker(0.15)|default('#9d3f60') }};--brand-light:{{ theme.color.lighter(0.15)|default('#e9a8ba') }};}</style>
+  {# Vercel Speed Insights #}
+  <script>
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
   {% hook 'head:end' %}
 </head>
 <body id="app" class="bellabox-theme {{ theme.settings.get('footer_is_dark', true) ? 'footer-is-dark' : '' }}">
