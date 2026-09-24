@@ -2,10 +2,3 @@ node_modules/
 .DS_Store
 .env
 *.log
-
-# Local/Colab machine-learning artifacts
-data/
-ml_outputs/
-*.keras
-*.h5
-__pycache__/
